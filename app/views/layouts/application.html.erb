@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DeviseBark</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+
+	<% if owner_signed_in? %>
+		<span>Welcome, <%= current_owner.firstname %></span> 
+    <%= link_to 'Edit Profile', edit_owner_registration_path %>
+		<%= link_to 'Sign Out', destroy_owner_session_path, :method => :delete %>
+	<% else %>
+		<%= link_to 'Sign In', new_owner_session_path %> or <%= link_to 'Sign Up', new_owner_registration_path %>
+	<% end %>
+
+    <%= yield %>
+  </body>
+</html>
